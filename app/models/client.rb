@@ -31,6 +31,11 @@ class Client < ActiveRecord::Base
       ['authorization_code', 'implicit']
     end
 
+    def can_handle_response_type?(types)
+      types = Array(types).collect(&:to_s).join(' ')
+      available_response_types.include?(types)
+    end
+
     def register!(registrar)
       registrar.validate!
       client = dynamic.new

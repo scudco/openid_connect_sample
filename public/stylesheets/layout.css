@@ -1,9 +1,6 @@
 h1, h2, h3, h4, strong, b {
   font-weight: 600;
 }
-section, article, nav, aside {
-  overflow: scroll;
-}
 a {
   color: #666;
   text-decoration: none;
