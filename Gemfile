@@ -12,6 +12,7 @@ gem 'rack-oauth2'
 gem 'openid_connect'
 
 group :development, :test do
+  gem 'awesome_print'
   gem 'sqlite3'
 end
 

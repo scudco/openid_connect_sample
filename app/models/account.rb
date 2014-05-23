@@ -23,7 +23,7 @@ class Account < ActiveRecord::Base
     userinfo.address      = nil unless access_token.accessible?(Scope::ADDRESS) || access_token.accessible?(:address)
     userinfo.phone_number = nil unless access_token.accessible?(Scope::PHONE)   || access_token.accessible?(:phone)
     userinfo.subject = if access_token.client.ppid?
-      PairwisePseudonymousIdentifier.find_or_create_by_sector_identifier(access_token.client.sector_identifier).identifier
+      pairwise_pseudonymous_identifiers.find_or_create_by_sector_identifier(access_token.client.sector_identifier).identifier
     else
       identifier
     end

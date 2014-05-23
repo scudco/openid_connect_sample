@@ -33,15 +33,11 @@ class AuthorizationsController < ApplicationController
       require_authentication
     end
 
-    respond_as_rack_app(status, header, resp)
-  end
+    www_auth_key = "WWW-Authenticate"
+    www_auth = header[www_auth_key]
+    headers[www_auth_key] = www_auth if www_auth.present?
 
-  def respond_as_rack_app(status, header, response)
-    ["WWW-Authenticate"].each do |key|
-      headers[key] = header[key] if header[key].present?
-    end
-
-    if response.redirect?
+    if resp.redirect?
       redirect_to header['Location']
     else
       render :new
